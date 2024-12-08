@@ -90,7 +90,7 @@ const Villas = [
 const LandingPage = () => {
   return (
     <div className='bg-gray-100'>
-      <Navbar />
+      <Navbar type={'loggined'} />
       <Hero />
       <div
         className='grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 space-x-2 mx-2 my-2'

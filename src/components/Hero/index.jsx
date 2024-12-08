@@ -11,7 +11,7 @@ const Hero = () => {
         <h1 className='font-bold text-2xl md:text-6xl'>
           Welcome to DarZayed Villa
         </h1>
-        <p className='text-center text-base md:text-xl italic'>
+        <p className='text-center text-base md:ztext-xl italic'>
           ~ Discover The Experience of Staying In a Villa With Beautiful Views ~
         </p>
         <div className=''>

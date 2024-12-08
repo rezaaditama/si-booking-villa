@@ -3,31 +3,32 @@ import Button from '../../components/Button';
 import Navbar from '../../components/Navbar';
 import { Link } from 'react-router';
 
-const LoginPage = () => {
-  const handleLogin = (e) => {
-    e.preventDefault();
-    localStorage.setItem('username', e.target.username.value);
-    localStorage.setItem('password', e.target.password.value);
-    window.location.href = '/';
-  };
+const RegisterPage = () => {
   return (
     <div
       className='min-h-screen w-full flex justify-center items-center relative bg-cover bg-center'
       style={{ backgroundImage: "url('/assets/img/hero-1.jpeg')" }}
     >
       <div className='absolute inset-0 bg-black bg-opacity-50'></div>
-      <Navbar className={'fixed top-0 w-full'} type={'auth'} />
-      <div className='relative shadow-2xl w-4/5 p-6 rounded-md md:w-1/3 inset-0 bg-white bg-opacity-50 mt-6'>
+      <Navbar className={'fixed top-0 w-full z-10'} type={'auth'} />
+      <div className='relative shadow-2xl w-4/5 p-6 mt-20 rounded-md md:w-1/3 inset-0 bg-white bg-opacity-50'>
         <div className='text-center mb-6'>
-          <h1 className='font-bold text-2xl text-gray-800'>Login</h1>
+          <h1 className='font-bold text-2xl text-gray-800'>Register</h1>
           <p className='text-sm'>Welcome, please enter your detail</p>
         </div>
-        <form className='space-y-5' onSubmit={handleLogin}>
+        <form className='space-y-3'>
           <Input
-            label={'Username'}
-            id={'username'}
-            type={'input'}
-            placeholder={'Enter your username'}
+            label={'Fullname'}
+            id={'fullname'}
+            type={'text'}
+            placeholder={'Enter your name'}
+            required={true}
+          />
+          <Input
+            label={'Email'}
+            id={'email'}
+            type={'email'}
+            placeholder={'Enter your email'}
             required={true}
           />
           <Input
@@ -37,16 +38,21 @@ const LoginPage = () => {
             placeholder={'Enter your password'}
             required={true}
           />
-          <Button className={'w-full py-2 bg-gray-800'} type={'submit'}>
-            Submit
-          </Button>
+          <Input
+            label={'Verify Password'}
+            id={'verifyPassword'}
+            type={'password'}
+            placeholder={'Verify your password'}
+            required={true}
+          />
+          <Button className={'w-full bg-gray-800'}>Submit</Button>
           <p className='text-center'>
-            Don't have an account?{' '}
+            Have an account?{' '}
             <Link
-              to={'/register'}
+              to={'/login'}
               className='font-bold text-gray-800 hover:text-gray-700'
             >
-              Register
+              Login
             </Link>
           </p>
         </form>
@@ -55,4 +61,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
