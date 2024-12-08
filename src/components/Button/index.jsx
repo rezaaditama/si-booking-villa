@@ -3,7 +3,7 @@ const Button = ({ children, type, className }) => {
     <>
       <button
         type={type}
-        className={`${className} bg-yellow-500 rounded-lg py-2 font-bold hover:bg-yellow-600`}
+        className={`${className} rounded-lg py-2 font-bold text-white`}
       >
         {children}
       </button>

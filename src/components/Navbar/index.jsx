@@ -9,9 +9,9 @@ const Navbar = () => {
       </div>
       <div className='flex space-x-4 font-bold text-white border rounded-full py-2 px-6'>
         <Link>Home</Link>
-        <Link>About</Link>
+        <Link>Pesanan</Link>
         <Link>Our Villa</Link>
-        <Link>Contact</Link>
+        <Link to={'/login'}>Login</Link>
       </div>
     </div>
   );
