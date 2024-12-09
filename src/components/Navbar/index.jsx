@@ -32,7 +32,7 @@ const Navbar = ({ className, type }) => {
         <Link to={'/'}>Home</Link>
         {type !== 'auth' && (
           <>
-            <Link>Pesanan</Link>
+            <Link to={'/cart'}>Pesanan</Link>
             <Link to={'#villas'}>Our Villa</Link>
           </>
         )}
@@ -45,7 +45,7 @@ const Navbar = ({ className, type }) => {
         <div className='font-bold text-white space-x-2 flex items-center'>
           <p>{username}</p>
           <Button
-            className={'bg-white text-gray-900 px-2 py-1'}
+            className={'bg-yellow-500 px-2 py-1'}
             type={'button'}
             onClick={handleLogout}
           >

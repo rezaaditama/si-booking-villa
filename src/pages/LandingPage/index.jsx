@@ -2,6 +2,7 @@ import Hero from '../../components/Hero';
 import Navbar from '../../components/Navbar';
 import Card from '../../components/Card';
 import Footer from '../../components/Footer';
+import { useState } from 'react';
 
 const Villas = [
   {
@@ -88,6 +89,25 @@ const Villas = [
 ];
 
 const LandingPage = () => {
+  const [cart, setCart] = useState([
+    {
+      id: 9,
+      qty: 1,
+    },
+  ]);
+
+  const handlePesan = (id) => {
+    if (cart.find((item) => item.id == id)) {
+      setCart(
+        cart.map((item) =>
+          item.id === id ? { ...item, qty: item.qty + 1 } : item
+        )
+      );
+    } else {
+      setCart([...cart, { id, qty: 1 }]);
+    }
+  };
+
   return (
     <div className='bg-gray-100'>
       <Navbar />
@@ -102,12 +122,55 @@ const LandingPage = () => {
             />
             <Card.Body
               description={product.facilities}
-              prize={`Rp ${product.prize.toLocaleString()}`}
+              prize={`Rp ${product.prize.toLocaleString('id-ID', {
+                styles: 'currency',
+                currency: 'IDR',
+              })}`}
+              id={product.id}
+              onClick={handlePesan}
             />
           </Card>
         ))}
       </div>
-      <div className=''>
+      <div className='w-1/3 fixed top-0 right-0'>
+        <h1 className='text-center bg-red-600 font-bold'>Cart</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Prize</th>
+              <th>Qty</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cart.map((item) => {
+              const villa = Villas.find((villa) => villa.id == item.id);
+              return (
+                <tr>
+                  <td>{villa.name}</td>
+                  <td>
+                    Rp.{' '}
+                    {villa.prize.toLocaleString('id-ID', {
+                      styles: 'currency',
+                      currency: 'IDR',
+                    })}
+                  </td>
+                  <td>{item.qty}</td>
+                  <td>
+                    Rp.{' '}
+                    {(item.qty * villa.prize).toLocaleString('id-ID', {
+                      styles: 'currency',
+                      currency: 'IDR',
+                    })}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      <div>
         <Footer />
       </div>
     </div>

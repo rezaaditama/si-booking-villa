@@ -17,14 +17,17 @@ const Header = ({ image, alt, name }) => {
   );
 };
 
-const Body = ({ description, prize }) => {
+const Body = ({ description, prize, onClick, id }) => {
   return (
     <div className='p-4 space-y-2'>
       <p className='text-justify line-clamp-2 text-sm md:text-base md:line-clamp-3'>
         {description}
       </p>
       <p className='text-center font-bold'>{prize}</p>
-      <Button className='w-full bg-yellow-500 hover:bg-yellow-600'>
+      <Button
+        className='w-full bg-yellow-500 hover:bg-yellow-600'
+        onClick={() => onClick(id)}
+      >
         Pesan
       </Button>
     </div>
