@@ -2,6 +2,7 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Navbar from '../../components/Navbar';
 import { Link } from 'react-router';
+import Banner from '../../components/Banner';
 
 const LoginPage = () => {
   const handleLogin = (e) => {
@@ -11,11 +12,7 @@ const LoginPage = () => {
     window.location.href = '/';
   };
   return (
-    <div
-      className='min-h-screen w-full flex justify-center items-center relative bg-cover bg-center'
-      style={{ backgroundImage: "url('/assets/img/hero-1.jpeg')" }}
-    >
-      <div className='absolute inset-0 bg-black bg-opacity-50'></div>
+    <Banner className={'min-h-screen flex justify-center items-center'}>
       <Navbar className={'fixed top-0 w-full'} type={'auth'} />
       <div className='relative shadow-2xl w-4/5 p-6 rounded-md md:w-1/3 inset-0 bg-white bg-opacity-50 mt-6'>
         <div className='text-center mb-6'>
@@ -51,7 +48,7 @@ const LoginPage = () => {
           </p>
         </form>
       </div>
-    </div>
+    </Banner>
   );
 };
 

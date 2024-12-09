@@ -90,12 +90,9 @@ const Villas = [
 const LandingPage = () => {
   return (
     <div className='bg-gray-100'>
-      <Navbar type={'loggined'} />
+      <Navbar />
       <Hero />
-      <div
-        className='grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 space-x-2 mx-2 my-2'
-        id='villas'
-      >
+      <div className='grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 space-x-2 mx-2 my-2'>
         {Villas.map((product) => (
           <Card key={product.id} className={''}>
             <Card.Header
