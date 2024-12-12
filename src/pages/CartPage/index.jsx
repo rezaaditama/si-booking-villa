@@ -1,6 +1,28 @@
+import { useEffect, useState } from 'react';
 import Navbar from '../../components/Navbar';
+import Villas from '../../Data/Villas';
+import Button from '../../components/Button';
 
 const CartPage = () => {
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    setCart(JSON.parse(localStorage.getItem('cart')) || []);
+  }, []);
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const updatedCart = JSON.parse(localStorage.getItem('cart'));
+      setCart(updatedCart || []);
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -11,34 +33,68 @@ const CartPage = () => {
               Keranjang
             </h1>
           </div>
-          <table className='w-full'>
-            <thead>
-              <tr className='bg-gray-300'>
-                <th className='border-b border-gray-400 p-2'></th>
-                <th className='border-b border-gray-400 p-2'>Villa</th>
-                <th className='border-b border-gray-400 p-2'>Prize</th>
-                <th className='border-b border-gray-400 p-2'>Qty</th>
-                <th className='border-b border-gray-400 p-2'>Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className='bg-white text-center'>
-                <td className='border-b border-gray-400 flex justify-center'>
-                  <div className='w-56 my-2'>
-                    <img
-                      src='/public/assets/img/villaNevada/villaNevada-1.jpeg'
-                      alt=''
-                      className='max-w-full max-h-full object-cover rounded'
-                    />
-                  </div>
-                </td>
-                <td className='border-b border-gray-400'>Villa Indah</td>
-                <td className='border-b border-gray-400'>Rp 3,500,000</td>
-                <td className='border-b border-gray-400'>1</td>
-                <td className='border-b border-gray-400'>Rp 3,500,000</td>
-              </tr>
-            </tbody>
-          </table>
+          <div className='overflow-x-auto'>
+            <table className='w-full'>
+              <thead>
+                <tr className='bg-gray-300'>
+                  <th className='border-b border-gray-400 p-2'></th>
+                  <th className='border-b border-gray-400 p-2'>Villa</th>
+                  <th className='border-b border-gray-400 p-2'>Price</th>
+                  <th className='border-b border-gray-400 p-2'>Qty</th>
+                  <th className='border-b border-gray-400 p-2'>Total</th>
+                  <th className='border-b border-gray-400 p-2'></th>
+                </tr>
+              </thead>
+              <tbody>
+                {cart.map((item) => {
+                  const villa = Villas.find((villa) => villa.id === item.id);
+                  if (!villa) return null;
+
+                  const priceFormatted = villa.prize.toLocaleString('id-ID', {
+                    styles: 'currency',
+                    currency: 'IDR',
+                  });
+
+                  const totalFormatted = (
+                    item.qty * villa.prize
+                  ).toLocaleString('id-ID', {
+                    styles: 'currency',
+                    currency: 'IDR',
+                  });
+
+                  return (
+                    <tr className='bg-white text-center' key={item.id}>
+                      <td className='border-b border-gray-400 w-1/5 p-2'>
+                        <div className='aspect-w-4 aspect-h-3'>
+                          <img
+                            src={villa.image_url?.[0] || '/default-image.jpg'}
+                            alt={villa.name}
+                            className='rounded w-full h-full object-cover'
+                          />
+                        </div>
+                      </td>
+                      <td className='border-b border-gray-400'>{villa.name}</td>
+                      <td className='border-b border-gray-400'>
+                        Rp. {priceFormatted}
+                      </td>
+                      <td className='border-b border-gray-400'>{item.qty}</td>
+                      <td className='border-b border-gray-400'>
+                        Rp. {totalFormatted}
+                      </td>
+                      <td className='border-b border-gray-400'>
+                        <div className='flex flex-col space-y-2'>
+                          <Button className={'bg-yellow-500 px-3'}>
+                            Pesan
+                          </Button>
+                          <Button className={'bg-gray-800 px-3'}>Batal</Button>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </>

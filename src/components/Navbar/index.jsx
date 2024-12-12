@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 import Button from '../Button';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const Navbar = ({ className, type }) => {
   const [username, setUsername] = useState(null);
@@ -19,6 +19,28 @@ const Navbar = ({ className, type }) => {
     localStorage.removeItem('password');
     window.location.href = '/';
   };
+
+  const usernameNav = useRef(null);
+  const loginNav = useRef(null);
+  const cartNav = useRef(null);
+
+  useEffect(() => {
+    if (username) {
+      usernameNav.current.style.display = 'flex';
+      loginNav.current.style.display = 'none';
+      cartNav.current.style.display = 'block';
+    } else {
+      usernameNav.current.style.display = 'none';
+      cartNav.current.style.display = 'none';
+    }
+  }, [username]);
+
+  useEffect(() => {
+    if (type === 'auth') {
+      loginNav.current.style.display = 'none';
+    }
+  }, []);
+
   return (
     <div
       className={`${className} bg-gray-800 h-16 px-10 flex items-center justify-between`}
@@ -30,29 +52,28 @@ const Navbar = ({ className, type }) => {
 
       <div className='flex space-x-4 font-bold text-white border rounded-full py-2 px-6'>
         <Link to={'/'}>Home</Link>
-        {type !== 'auth' && (
-          <>
-            <Link to={'/cart'}>Pesanan</Link>
-            <Link to={'#villas'}>Our Villa</Link>
-          </>
-        )}
-        {username === null && type !== 'auth' && (
-          <Link to={'/login'}>Login</Link>
-        )}
+        <Link to={'#villas'}>Our Villa</Link>
+        <Link to={'/cart'} ref={cartNav}>
+          Pesanan
+        </Link>
+        <Link to={'/login'} ref={loginNav}>
+          Login
+        </Link>
       </div>
 
-      {username !== null && (
-        <div className='font-bold text-white space-x-2 flex items-center'>
-          <p>{username}</p>
-          <Button
-            className={'bg-yellow-500 px-2 py-1'}
-            type={'button'}
-            onClick={handleLogout}
-          >
-            Logout
-          </Button>
-        </div>
-      )}
+      <div
+        className='font-bold text-white space-x-2 flex items-center'
+        ref={usernameNav}
+      >
+        <p>{username}</p>
+        <Button
+          className={'bg-yellow-500 px-2 py-1'}
+          type={'button'}
+          onClick={handleLogout}
+        >
+          Logout
+        </Button>
+      </div>
     </div>
   );
 };
