@@ -3,8 +3,11 @@ import Button from '../../components/Button';
 import Navbar from '../../components/Navbar';
 import { Link } from 'react-router';
 import Banner from '../../components/Banner';
+import { useAuth } from '../../hooks/useAuth';
 
 const RegisterPage = () => {
+  const userActivity = useAuth();
+
   return (
     <Banner className={'min-h-screen flex justify-center items-center'}>
       <Navbar className={'fixed top-0 w-full z-10'} type={'auth'} />

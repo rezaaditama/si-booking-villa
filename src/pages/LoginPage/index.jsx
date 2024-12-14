@@ -3,8 +3,11 @@ import Button from '../../components/Button';
 import Navbar from '../../components/Navbar';
 import { Link } from 'react-router';
 import Banner from '../../components/Banner';
+import { useAuth } from '../../hooks/useAuth';
 
 const LoginPage = () => {
+  const userActivity = useAuth();
+
   const handleLogin = (e) => {
     e.preventDefault();
     localStorage.setItem('username', e.target.username.value);

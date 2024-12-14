@@ -2,9 +2,12 @@ import { useEffect, useState } from 'react';
 import Navbar from '../../components/Navbar';
 import Villas from '../../Data/Villas';
 import Button from '../../components/Button';
+import { useLoginActivity } from '../../hooks/useLoginActivity';
 
 const CartPage = () => {
   const [cart, setCart] = useState([]);
+
+  const userActivity = useLoginActivity();
 
   useEffect(() => {
     setCart(JSON.parse(localStorage.getItem('cart')) || []);
@@ -51,14 +54,14 @@ const CartPage = () => {
                   if (!villa) return null;
 
                   const priceFormatted = villa.prize.toLocaleString('id-ID', {
-                    styles: 'currency',
+                    style: 'currency',
                     currency: 'IDR',
                   });
 
                   const totalFormatted = (
                     item.qty * villa.prize
                   ).toLocaleString('id-ID', {
-                    styles: 'currency',
+                    style: 'currency',
                     currency: 'IDR',
                   });
 

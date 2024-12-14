@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "Villa Seruni 1",
+    "location": "Puncak, Bogor",
+    "prize": 3500000,
+    "Facilities": "Full AC, Free wifi, TV  cable, Heater Water, Refrigerator, Washing machine, Kitchen utensils, Sekurity 24, max capacity 20 persons",
+    "image_url": ["/public/assets/img/villaSeruni1/villaSeruni1-1.jpeg"]
+  },
+  {
+    "id": 2,
+    "name": "Villa Melati",
+    "location": "Puncak, Bogor",
+    "prize": 3500000,
+    "Facilities": "Swimming pool, Free Wifi, AC, TV LCD, Karaoke, Heater Water, Refrigerator, Microwave, Magic Com, Washing Machine, Kitchen Utensils, Garage, 24 hours, Capacity 20 persons",
+    "image_url": ["/public/assets/img/villaMelati/villaMelati-1.jpeg"]
+  },
+  {
+    "id": 3,
+    "name": "Villa Seruni 2",
+    "location": "Puncak, Bogor",
+    "prize": 3500000,
+    "Facilities": "Swimming Pool, Free Wifi, AC, LCD TV, Karaoke, Heater Water, Refrigerator, Microwave, Magic com, Kitchen Utensils, Washing Machine, Garage, 24 Hours, Capacity 15 persons",
+    "image_url": ["/public/assets/img/villaSeruni2/villaSeruni2-1.jpeg"]
+  },
+  {
+    "id": 4,
+    "name": "Villa Victorian 1",
+    "location": "Puncak, Bogor",
+    "prize": 4000000,
+    "Facilities": "Swimming Pool, Free Wifi, AC, LCD TV, Karaoke, Heater Water, Refrigerator, Microwave, Magic com, Kitchen Utensils, Washing Machine, Garage, 24 Hours, Capacity 15 persons",
+    "image_url": ["/public/assets/img/villaVictorian1/villaVictorian1-1.jpeg"]
+  },
+  {
+    "id": 5,
+    "name": "Villa Victorian 2",
+    "location": "Puncak, Bogor",
+    "prize": 4000000,
+    "Facilities": "Swimming Pool, Free Wifi, AC, LCD TV International Channel, Sound System, Karaoke, Heater Water, Refrigerator, Microwave, Magic com, Kitchen Utensils, BBQ, Washing Machine, Garage, 24 Hours, Capacity 15 persons",
+    "image_url": ["/public/assets/img/villaVictorian2/villaVictorian2-1.jpeg"]
+  },
+  {
+    "id": 6,
+    "name": "Villa Nevada",
+    "location": "Puncak, Bogor",
+    "prize": 3800000,
+    "Facilities": "Swimming Pool, Free Wifi, AC, LCD TV (international channel), Sound system, Karaoke, Heater water, Refrigerator, Microwave, Magic Com, Dispenser, Kitchen Utensils, BBQ, Washing Machine, Garage, 24 hours, Capacity 20 person",
+    "image_url": ["/public/assets/img/villaNevada/villaNevada-1.jpeg"]
+  },
+  {
+    "id": 7,
+    "name": "Villa Vinctorian 3",
+    "location": "Puncak, Bogor",
+    "prize": 4500000,
+    "Facilities": "Swimming Pool, Free Wifi, AC, LCD TV (International Channel), Sound System, Karaoke, Heater Water, Refrigerator, Microwave, Magic Com, Dispenser, Kitchen Utensils, Washing Machine, BBQ, Garage, 24 hours, Capacity 20 persons.",
+    "image_url": ["/public/assets/img/villaVictorian3/villaVictorian3-1.jpeg"]
+  },
+  {
+    "id": 8,
+    "name": "Villa Vinctorian 4",
+    "location": "Puncak, Bogor",
+    "prize": 4500000,
+    "Facilities": "Swimming Pool, Free Wifi, AC, LCD TV with International Channel, Sound System, Karaoke, Heater Water, Refrigerator, Microwave, Magic Com, Dispenser, Kitchen Utensils, Washing Machine, BBQ, Garage, 24-hour service, Capacity for 20 persons.",
+    "image_url": ["/public/assets/img/villaVictorian4/villaVictorian4-1.jpeg"]
+  },
+  {
+    "id": 9,
+    "name": "Villa Vinctorian 5",
+    "location": "Puncak, Bogor",
+    "prize": 5000000,
+    "Facilities": "Swimming Pool, Free Wifi, AC, LCD TV with International Channel, Sound System, Karaoke, Heater Water, Refrigerator, Microwave, Dispenser, Magic Com, Kitchen Utensils, BBQ Equipment, Washing Machine, Safety Box, Garage, 24-Hour Service, Capacity for 20 Persons.",
+    "image_url": ["/public/assets/img/villaVictorian5/villaVictorian-1.jpeg"]
+  }
+]
