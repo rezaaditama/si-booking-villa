@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-export const useLoginActivity = () => {
+export const useAdmin = () => {
   useEffect(() => {
     const getUser = localStorage.getItem('username');
 
@@ -8,7 +8,7 @@ export const useLoginActivity = () => {
       try {
         const user = JSON.parse(getUser);
 
-        if (user.role !== 'user') {
+        if (user.role !== 'admin') {
           window.location.href = '/login'; // Arahkan ke /login jika bukan admin
         }
       } catch (error) {

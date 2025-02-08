@@ -3,16 +3,42 @@ import Button from '../../components/Button';
 import Navbar from '../../components/Navbar';
 import { Link } from 'react-router';
 import Banner from '../../components/Banner';
+import { getAllUsers } from '../../services/authService';
+import { useEffect, useState } from 'react';
 import { useAuth } from '../../hooks/useAuth';
 
 const LoginPage = () => {
-  const userActivity = useAuth();
+  const [users, setUsers] = useState([]);
+  const [error, setError] = useState('');
+
+  const auth = useAuth();
+
+  useEffect(() => {
+    getAllUsers((data) => {
+      setUsers(data);
+    });
+  }, []);
 
   const handleLogin = (e) => {
     e.preventDefault();
-    localStorage.setItem('username', e.target.username.value);
-    localStorage.setItem('password', e.target.password.value);
-    window.location.href = '/';
+    const data = {
+      username: e.target.username.value,
+      password: e.target.password.value,
+    };
+
+    const user = users.find(
+      (user) =>
+        user.username === data.username && user.password === data.password
+    );
+    localStorage.setItem('username', JSON.stringify(user));
+    if (user.role == 'user') {
+      localStorage.setItem('id', user.user_id);
+      window.location.href = '/';
+    } else if (user.role == 'admin') {
+      window.location.href = '/cartAdmin';
+    } else {
+      setError('Username atau password tidak ada');
+    }
   };
   return (
     <Banner className={'min-h-screen flex justify-center items-center'}>
@@ -40,6 +66,7 @@ const LoginPage = () => {
           <Button className={'w-full py-2 bg-gray-800'} type={'submit'}>
             Submit
           </Button>
+          {error && <p className='text-red-700 text-center'>{error}</p>}
           <p className='text-center'>
             Don't have an account?{' '}
             <Link

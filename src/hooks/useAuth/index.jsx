@@ -1,15 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 export const useAuth = () => {
-  const [username, setUsername] = useState('');
-
   useEffect(() => {
-    const getUsername = localStorage.getItem('username');
+    const username = localStorage.getItem('username');
 
-    if (getUsername) {
+    if (username) {
       window.location.href = '/';
     }
   }, []);
-
-  return username;
 };

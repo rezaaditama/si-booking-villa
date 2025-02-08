@@ -4,9 +4,28 @@ import Navbar from '../../components/Navbar';
 import { Link } from 'react-router';
 import Banner from '../../components/Banner';
 import { useAuth } from '../../hooks/useAuth';
+import { createUser } from '../../services/authService';
 
 const RegisterPage = () => {
-  const userActivity = useAuth();
+  const auth = useAuth();
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+
+    if (e.target.password.value !== e.target.verifyPassword.value) {
+      alert('Password tidak sesuai');
+    } else {
+      const data = {
+        fullname: e.target.fullname.value,
+        username: e.target.username.value,
+        email: e.target.email.value,
+        password: e.target.password.value,
+        role: 'user',
+      };
+      createUser(data);
+      window.location.href = '/login';
+    }
+  };
 
   return (
     <Banner className={'min-h-screen flex justify-center items-center'}>
@@ -16,12 +35,19 @@ const RegisterPage = () => {
           <h1 className='font-bold text-2xl text-gray-800'>Register</h1>
           <p className='text-sm'>Welcome, please enter your detail</p>
         </div>
-        <form className='space-y-3'>
+        <form className='space-y-3' onSubmit={handleRegister}>
           <Input
             label={'Fullname'}
             id={'fullname'}
             type={'text'}
             placeholder={'Enter your name'}
+            required={true}
+          />
+          <Input
+            label={'Username'}
+            id={'username'}
+            type={'text'}
+            placeholder={'Enter your username'}
             required={true}
           />
           <Input
@@ -45,7 +71,9 @@ const RegisterPage = () => {
             placeholder={'Verify your password'}
             required={true}
           />
-          <Button className={'w-full bg-gray-800'}>Submit</Button>
+          <Button className={'w-full bg-gray-800'} type={'submit'}>
+            Submit
+          </Button>
           <p className='text-center'>
             Have an account?{' '}
             <Link

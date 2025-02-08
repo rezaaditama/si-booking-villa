@@ -4,19 +4,21 @@ import { useState, useEffect, useRef } from 'react';
 
 const Navbar = ({ className, type }) => {
   const [username, setUsername] = useState(null);
+  const [role, setRole] = useState(null);
 
   useEffect(() => {
-    const getUsername = localStorage.getItem('username');
+    const getUser = localStorage.getItem('username');
 
-    if (getUsername) {
-      setUsername(getUsername);
+    if (getUser) {
+      const user = JSON.parse(getUser);
+      setUsername(user.username);
+      setRole(user.role);
     }
   }, []);
 
   const handleLogout = (e) => {
     e.preventDefault();
     localStorage.removeItem('username');
-    localStorage.removeItem('password');
     window.location.href = '/';
   };
 
@@ -51,14 +53,28 @@ const Navbar = ({ className, type }) => {
       </div>
 
       <div className='flex space-x-4 font-bold text-white border rounded-full py-2 px-6'>
-        <Link to={'/'}>Home</Link>
-        <Link to={'#villas'}>Our Villa</Link>
-        <Link to={'/cart'} ref={cartNav}>
-          Pesanan
-        </Link>
-        <Link to={'/login'} ref={loginNav}>
-          Login
-        </Link>
+        {role === 'admin' ? (
+          <>
+            <Link to={'/cartAdmin'}>Order Villa</Link>
+            <Link to={'/user'} ref={cartNav}>
+              All User
+            </Link>
+            <Link to={'/login'} ref={loginNav}>
+              Login
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link to={'/'}>Home</Link>
+            <Link to={'#villas'}>Our Villa</Link>
+            <Link to={'/cart'} ref={cartNav}>
+              Pesanan
+            </Link>
+            <Link to={'/login'} ref={loginNav}>
+              Login
+            </Link>
+          </>
+        )}
       </div>
 
       <div
